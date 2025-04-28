@@ -1,63 +1,57 @@
 // Wait for the document to load completely
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     const backToTop = document.querySelector('.back-to-top');
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
-            backToTop.classList.add('active');
+            if (backToTop) backToTop.classList.add('active');
         } else {
             navbar.classList.remove('scrolled');
-            backToTop.classList.remove('active');
+            if (backToTop) backToTop.classList.remove('active');
         }
     });
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const target = document.querySelector(this.getAttribute('href'));
-            
-            if (target) {
-                // Close mobile menu if open
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                
-                if (navbarCollapse.classList.contains('show')) {
-                    navbarToggler.click();
+            const targetId = this.getAttribute('href');
+            if (targetId.length > 1) {  // avoid empty href
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    const navbarToggler = document.querySelector('.navbar-toggler');
+                    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                    }
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 }
-                
-                // Scroll to target
-                window.scrollTo({
-                    top: target.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-                
-                // Update active nav link
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
             }
         });
     });
 
-    // Set active nav link on scroll
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY + 100;
-        
-        document.querySelectorAll('section').forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionBottom = sectionTop + section.offsetHeight;
-            const sectionId = section.getAttribute('id');
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+    // Update active nav link on scroll
+    window.addEventListener('scroll', function () {
+        const scrollPosition = window.scrollY + 120;
+        document.querySelectorAll('section[id]').forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                const id = section.getAttribute('id');
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + sectionId) {
+                    if (link.getAttribute('href') === `#${id}`) {
                         link.classList.add('active');
                     }
                 });
@@ -65,34 +59,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form validation and submission
+    // Form validation
     const contactForm = document.getElementById('contactForm');
-    
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value;
-            
-            // Simple validation
+            const message = document.getElementById('message').value.trim();
+
             if (!name || !email || !message || !service) {
                 showAlert('Please fill all required fields', 'danger');
                 return;
             }
-            
-            // Email validation
+
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 showAlert('Please enter a valid email address', 'danger');
                 return;
             }
-            
-            // Phone validation (optional field)
+
             if (phone) {
                 const phoneRegex = /^\d{10,15}$/;
                 if (!phoneRegex.test(phone.replace(/[\s()-]/g, ''))) {
@@ -100,12 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
             }
-            
-            // Simulate form submission
-            showAlert('Your message has been sent successfully! We will contact you soon.', 'success');
+
+            showAlert('Your message has been sent successfully!', 'success');
             contactForm.reset();
-            
-            // In a real application, you would send this data to your server
+
             console.log({
                 name,
                 email,
@@ -117,27 +105,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Show alert message
+    // Show alert
     function showAlert(message, type) {
-        // Remove any existing alerts
         const existingAlert = document.querySelector('.alert');
-        if (existingAlert) {
-            existingAlert.remove();
-        }
-        
-        // Create new alert
+        if (existingAlert) existingAlert.remove();
+
         const alertDiv = document.createElement('div');
-        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show mt-3`;
         alertDiv.setAttribute('role', 'alert');
         alertDiv.innerHTML = `
             ${message}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         `;
-        
-        // Insert alert before the form
         contactForm.parentElement.insertBefore(alertDiv, contactForm);
-        
-        // Auto-dismiss after 5 seconds
+
         setTimeout(() => {
             const alert = document.querySelector('.alert');
             if (alert) {
@@ -147,75 +128,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // FAQ Accordion Management
-    const accordionItems = document.querySelectorAll('.accordion-item');
-    
-    accordionItems.forEach(item => {
-        const header = item.querySelector('.accordion-header');
-        
-        header.addEventListener('mouseenter', function() {
-            this.style.backgroundColor = 'rgba(0, 123, 255, 0.05)';
-        });
-        
-        header.addEventListener('mouseleave', function() {
-            if (!this.querySelector('.accordion-button').classList.contains('collapsed')) {
-                this.style.backgroundColor = 'rgba(0, 123, 255, 0.05)';
-            } else {
-                this.style.backgroundColor = '';
-            }
-        });
-    });
+    // Animate service cards, about features, and job cards on scroll
+    const animatedElements = document.querySelectorAll('.service-card, .about-feature, .job-card');
 
-    // Add animation effects on scroll
-    const animatedElements = document.querySelectorAll('.service-card, .job-card, .about-feature');
-    
-    // Check if element is in viewport
     function isInViewport(element) {
         const rect = element.getBoundingClientRect();
-        return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
-            rect.bottom >= 0
-        );
+        return rect.top <= window.innerHeight * 0.9;
     }
-    
-    // Add animation class when element is in viewport
+
     function checkAnimations() {
         animatedElements.forEach(element => {
             if (isInViewport(element) && !element.classList.contains('animated')) {
                 element.classList.add('animated');
-                element.style.animation = 'fadeInUp 0.5s ease forwards';
+                element.style.animation = 'fadeInUp 0.6s ease forwards';
                 element.style.opacity = '1';
             }
         });
     }
-    
-    // Set initial opacity
-    animatedElements.forEach(element => {
-        element.style.opacity = '0';
-    });
-    
-    // Check on load and scroll
+
+    animatedElements.forEach(el => el.style.opacity = '0');
+
     window.addEventListener('load', checkAnimations);
     window.addEventListener('scroll', checkAnimations);
 
-    // Define fadeInUp animation
     const style = document.createElement('style');
     style.innerHTML = `
         @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     `;
     document.head.append(style);
 
-    // Carousel testimonials auto-play (if you add testimonials later)
-    const testimonialsCarousel = document.querySelector('#testimonialsCarousel');
+    // Carousel auto-play
+    const testimonialsCarousel = document.querySelector('#elevatorCarousel');
     if (testimonialsCarousel) {
         new bootstrap.Carousel(testimonialsCarousel, {
             interval: 5000,
@@ -223,39 +169,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Service hover effect for cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.boxShadow = '0 10px 30px rgba(0, 123, 255, 0.2)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-        });
-    });
-
-    // Job cards hover effect
-    const jobCards = document.querySelectorAll('.job-card');
-    jobCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.boxShadow = '0 10px 30px rgba(0, 123, 255, 0.2)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-        });
-    });
-
-    // Navbar mobile menu close when clicking outside
-    document.addEventListener('click', function(event) {
+    // Close mobile menu on outside click
+    document.addEventListener('click', function (e) {
         const navbarCollapse = document.querySelector('.navbar-collapse');
         const navbarToggler = document.querySelector('.navbar-toggler');
-        
-        if (navbarCollapse.classList.contains('show') &&
-            !event.target.closest('.navbar') &&
-            !event.target.closest('.navbar-toggler')) {
+        if (navbarCollapse && navbarCollapse.classList.contains('show') && !e.target.closest('.navbar')) {
             navbarToggler.click();
         }
     });
+
 });
