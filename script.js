@@ -179,3 +179,206 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
+
+// Script for Elevator Modernization Website
+
+// DOM Elements
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const navLinks = document.querySelectorAll('.nav-menu a');
+const testimonials = document.querySelectorAll('.testimonial');
+const dots = document.querySelectorAll('.dot');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+const header = document.querySelector('header');
+
+// Mobile Navigation
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking links
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
+
+// Scroll to section when clicking on nav links
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        
+        if (targetId === '#') return;
+        
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Sticky header
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.98)';
+        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    } else {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+    }
+});
+
+// Testimonial Slider
+let currentTestimonial = 0;
+const totalTestimonials = testimonials.length;
+
+// Initialize testimonial slider
+function initTestimonialSlider() {
+    testimonials[currentTestimonial].classList.add('active');
+    dots[currentTestimonial].classList.add('active');
+}
+
+// Show specific testimonial
+function showTestimonial(index) {
+    testimonials.forEach(testimonial => {
+        testimonial.classList.remove('active');
+    });
+    
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+    });
+    
+    testimonials[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentTestimonial = index;
+}
+
+// Next testimonial
+function nextTestimonial() {
+    currentTestimonial++;
+    if (currentTestimonial >= totalTestimonials) {
+        currentTestimonial = 0;
+    }
+    showTestimonial(currentTestimonial);
+}
+
+// Previous testimonial
+function prevTestimonial() {
+    currentTestimonial--;
+    if (currentTestimonial < 0) {
+        currentTestimonial = totalTestimonials - 1;
+    }
+    showTestimonial(currentTestimonial);
+}
+
+// Event listeners for testimonial controls
+nextBtn.addEventListener('click', nextTestimonial);
+prevBtn.addEventListener('click', prevTestimonial);
+
+// Dot navigation
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showTestimonial(index);
+    });
+});
+
+// Auto-rotate testimonials
+let testimonialInterval = setInterval(nextTestimonial, 5000);
+
+// Stop auto-rotation when interacting with controls
+function resetInterval() {
+    clearInterval(testimonialInterval);
+    testimonialInterval = setInterval(nextTestimonial, 5000);
+}
+
+nextBtn.addEventListener('click', resetInterval);
+prevBtn.addEventListener('click', resetInterval);
+dots.forEach(dot => {
+    dot.addEventListener('click', resetInterval);
+});
+
+// Reveal animations for sections
+const revealElements = document.querySelectorAll('.benefit-card, .feature, .project-card, .timeline-item');
+
+function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    
+    revealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        
+        if (elementTop < windowHeight - 150) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }
+    });
+}
+
+// Apply initial styles for animation
+revealElements.forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(20px)';
+    element.style.transition = 'all 0.5s ease-in-out';
+});
+
+// Initialize animations
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', () => {
+    revealOnScroll();
+    initTestimonialSlider();
+});
+
+// Pause testimonial rotation when hovering over slider
+const testimonialSlider = document.querySelector('.testimonials-slider');
+testimonialSlider.addEventListener('mouseenter', () => {
+    clearInterval(testimonialInterval);
+});
+
+testimonialSlider.addEventListener('mouseleave', () => {
+    testimonialInterval = setInterval(nextTestimonial, 5000);
+});
+
+// Form validation for contact form (if added later)
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('#contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.querySelector('#name');
+            const email = document.querySelector('#email');
+            const message = document.querySelector('#message');
+            
+            if (name && name.value.trim() === '') {
+                alert('Please enter your name');
+                name.focus();
+                return false;
+            }
+            
+            if (email && email.value.trim() === '') {
+                alert('Please enter your email');
+                email.focus();
+                return false;
+            }
+            
+            if (message && message.value.trim() === '') {
+                alert('Please enter your message');
+                message.focus();
+                return false;
+            }
+            
+            // Simulate form submission
+            alert('Thank you for your message. We will get back to you shortly!');
+            contactForm.reset();
+        });
+    }
+});

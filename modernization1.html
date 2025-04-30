@@ -1,482 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elevator Modernization | Superior Elevator Solutions</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: #0c2461;
-            color: white;
-            padding: 20px 0;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 20px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #74b9ff;
-        }
-        
-        .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1565951704781-ce4a5b353e2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #e74c3c;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #c0392b;
-        }
-        
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 36px;
-            color: #0c2461;
-        }
-        
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .benefit-card {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .benefit-card i {
-            font-size: 48px;
-            color: #e74c3c;
-            margin-bottom: 20px;
-        }
-        
-        .benefit-card h3 {
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-        
-        .solutions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .solution-card {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .solution-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .solution-info {
-            padding: 20px;
-        }
-        
-        .solution-info h3 {
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-        
-        .solution-info p {
-            margin-bottom: 20px;
-        }
-        
-        .cta {
-            background-color: #0c2461;
-            color: white;
-            text-align: center;
-        }
-        
-        .cta-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .cta h2 {
-            margin-bottom: 20px;
-            font-size: 36px;
-        }
-        
-        .cta p {
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
-        
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            text-align: left;
-            margin-bottom: 40px;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-section ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-section ul li a:hover {
-            color: #74b9ff;
-        }
-        
-        .copyright {
-            padding-top: 20px;
-            border-top: 1px solid #555;
-        }
-        
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .project-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .project-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        
-        .project-info {
-            padding: 20px;
-        }
-        
-        .project-info h3 {
-            margin-bottom: 15px;
-            font-size: 22px;
-            color: #0c2461;
-        }
-        
-        .project-info p {
-            margin-bottom: 20px;
-            min-height: 120px;
-        }
-        
-        .read-more {
-            display: inline-block;
-            color: #e74c3c;
-            font-weight: bold;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .read-more:hover {
-            color: #c0392b;
-        }
-        
-        .section-heading {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #0c2461;
-            font-weight: bold;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .section-title {
-                font-size: 30px;
-            }
-        }
-    </style>
+    <title>Elevator Modernization</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="modern.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+    <!-- Navigation Bar -->
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">Superior Elevator Solutions</div>
-                <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Modernization</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#"><img src="assests/logo.png" alt="Company Logo"></a>
+            </div>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#modernization">Modernization</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact" class="contact-btn">Contact Us</a></li>
+            </ul>
+        </nav>
     </header>
-    
-    <div class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Elevator Modernization Solutions</h1>
-                <p>Upgrade your elevator system for improved safety, efficiency, and aesthetics with our cutting-edge modernization solutions.</p>
-                <a href="#" class="btn">Get a Free Consultation</a>
-            </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="modernization"
+        style="background-image: url('assests/modern.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;">
+        <div class="hero-content">
+            <h1>Elevator Modernization</h1>
+            <p>Transform your outdated elevator systems into modern, efficient, and safe solutions for your building's
+                future.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
         </div>
-    </div>
-    
-    <section class="section">
+    </section>
+
+    <!-- Why Modernize Section -->
+    <section class="why-modernize">
         <div class="container">
-            <h2 class="section-title">Why Modernize Your Elevator?</h2>
-            <div class="benefits">
+            <div class="section-header">
+                <h2>Why Should We Modernize?</h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="benefits-grid">
                 <div class="benefit-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Enhanced Safety</h3>
-                    <p>Upgrade to the latest safety features and comply with current codes and regulations to provide a safer experience for passengers.</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-bolt"></i>
+                    <div class="icon-container">
+                        <i class="fas fa-bolt"></i>
+                    </div>
                     <h3>Energy Efficiency</h3>
-                    <p>Reduce energy consumption by up to 40% with modern, energy-efficient components and regenerative drive technology.</p>
+                    <p>Reduce power consumption by up to 70% with modern drive systems and LED lighting.</p>
                 </div>
                 <div class="benefit-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Improved Performance</h3>
-                    <p>Enjoy smoother rides, faster travel times, and reduced waiting periods with upgraded control systems and motors.</p>
+                    <div class="icon-container">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Enhanced Safety</h3>
+                    <p>Implement the latest safety features that meet and exceed current industry standards.</p>
                 </div>
                 <div class="benefit-card">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>Modern Aesthetics</h3>
-                    <p>Transform the look and feel of your elevators with contemporary designs, materials, and lighting options.</p>
+                    <div class="icon-container">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Increased Property Value</h3>
+                    <p>Modernized elevators enhance building appeal and increase overall property value.</p>
                 </div>
                 <div class="benefit-card">
-                    <i class="fas fa-wrench"></i>
-                    <h3>Reduced Maintenance</h3>
-                    <p>Lower maintenance costs and decrease downtime with modern components that require less frequent repairs.</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-building"></i>
-                    <h3>Property Value</h3>
-                    <p>Increase your building's value and attractiveness to tenants with reliable, modern elevator systems.</p>
+                    <div class="icon-container">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <h3>Reduced Wait Times</h3>
+                    <p>Advanced algorithms optimize elevator routing for faster service and reduced wait times.</p>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="section" style="background-color: #f5f5f5;">
+
+    <!-- Features Section -->
+    <section class="features">
         <div class="container">
-            <h2 class="section-title">Our Modernization Solutions</h2>
-            <div class="solutions">
-                <div class="solution-card">
-                    <img src="/api/placeholder/400/320" alt="Complete Modernization">
-                    <div class="solution-info">
-                        <h3>Complete Modernization</h3>
-                        <p>A comprehensive upgrade that replaces all major components while retaining the existing shaft and hoistway structure.</p>
-                        <a href="#" class="read-more">Learn More</a>
+            <div class="section-header">
+                <h2>Features of Modernization</h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="features-container">
+                <div class="feature">
+                    <div class="feature-image">
+                        <img src="assests/image2.jpeg" alt="Smart Control Systems">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Smart Control Systems</h3>
+                        <p>Our advanced control systems use AI to predict traffic patterns and optimize elevator
+                            movement throughout the day.</p>
+                        <ul>
+                            <li>Machine learning algorithms</li>
+                            <li>Remote monitoring capabilities</li>
+                            <li>Predictive maintenance</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="solution-card">
-                    <img src="/api/placeholder/400/320" alt="Targeted Component Replacement">
-                    <div class="solution-info">
-                        <h3>Targeted Component Replacement</h3>
-                        <p>Upgrade specific components like controls, doors, or cab interiors to address particular needs without a full modernization.</p>
-                        <a href="#" class="read-more">Learn More</a>
+                <div class="feature reverse">
+                    <div class="feature-content">
+                        <h3>Modern Cabin Design</h3>
+                        <p>Transform your elevator's interior with premium materials and customizable options that
+                            enhance user experience.</p>
+                        <ul>
+                            <li>LED lighting systems</li>
+                            <li>Touchless control panels</li>
+                            <li>Custom finishes and designs</li>
+                        </ul>
+                    </div>
+                    <div class="feature-image">
+                        <img src="assests/smart.jpg" alt="Modern Cabin Design">
                     </div>
                 </div>
-                <div class="solution-card">
-                    <img src="/api/placeholder/400/320" alt="Control System Upgrade">
-                    <div class="solution-info">
-                        <h3>Control System Upgrade</h3>
-                        <p>Replace outdated control systems with modern microprocessor controls for improved reliability and performance.</p>
-                        <a href="#" class="read-more">Learn More</a>
+                <div class="feature">
+                    <div class="feature-image">
+                        <img src="assests/energy.jpg" alt="Energy Recovery Systems">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Energy Recovery Systems</h3>
+                        <p>Our regenerative drive technology captures energy during descent and feeds it back into your
+                            building's electrical system.</p>
+                        <ul>
+                            <li>Up to 70% energy savings</li>
+                            <li>Reduced carbon footprint</li>
+                            <li>Lower operational costs</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- New Projects Section -->
-    <section class="section">
+
+    <!-- Modernization Process Section -->
+    <section class="modernization-process">
         <div class="container">
-            <h2 class="section-heading">OUR MODERNIZATION PROJECTS</h2>
+            <div class="section-header">
+                <h2>The Modernization Process</h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="process-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Initial Assessment</h3>
+                        <p>Our experts evaluate your current elevator system and building requirements to identify the
+                            best modernization approach.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Custom Solution Design</h3>
+                        <p>We create a tailored modernization plan that addresses your specific needs while maximizing
+                            efficiency and value.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Precision Implementation</h3>
+                        <p>Our skilled technicians install new components and systems with minimal disruption to your
+                            building operations.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Testing & Certification</h3>
+                        <p>Rigorous testing ensures all systems meet safety standards and performance expectations
+                            before handover.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">5</div>
+                    <div class="timeline-content">
+                        <h3>Ongoing Support</h3>
+                        <p>We provide maintenance and support to ensure your modernized elevator continues to operate at
+                            peak performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Modernized Projects</h2>
+                <div class="header-line"></div>
+            </div>
             <div class="projects-grid">
+                <!-- Project cards will be added here once you provide the screenshots -->
                 <div class="project-card">
-                    <img src="/api/placeholder/400/320" alt="Sangvi Square, Mumbai">
+                    <div class="project-image">
+                        <img src="assests/skyline.jpg" alt="Project 1">
+                    </div>
                     <div class="project-info">
-                        <h3>Sangvi Square, Mumbai</h3>
-                        <p>Completed full elevator modernization with AI-powered controls, panoramic glass design and energy-efficient motors.</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <h3>Skyline Tower</h3>
+                        <p>At Skyline Tower, a premium residential building, Super Elevators installed a modern
+                            passenger elevator tailored for everyday comfort and safety. Designed to serve multiple
+                            floors efficiently, the elevator ensures smooth and noiseless operation. It is equipped with
+                            advanced IoT monitoring and energy-efficient technology, enhancing both performance and
+                            sustainability for residents.</p>
+                        <span class="project-category">Residential</span>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="/api/placeholder/400/320" alt="Aarti Hotel, Pune">
+                    <div class="project-image">
+                        <img src="assests/hotel.jpg" alt="Project 2">
+                    </div>
                     <div class="project-info">
-                        <h3>Aarti Hotel, Pune</h3>
-                        <p>Upgraded with touchless buttons and smart IoT monitoring for better efficiency. A machine room-less (MRL) passenger elevator.</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <h3>Aarti Hotel</h3>
+                        <p>At Aarti Hotel in Pune, Super Elevators successfully installed a passenger elevator designed
+                            for hotel use. The elevator accommodates up to six passengers across G+3 floors. It features
+                            advanced IoT monitoring and an energy-efficient drive system to ensure smooth, reliable, and
+                            sustainable operation.</p>
+                        <span class="project-category">Healthcare</span>
                     </div>
                 </div>
                 <div class="project-card">
-                    <img src="/api/placeholder/400/320" alt="Traffic Lite, Mumbai">
+                    <div class="project-image">
+                        <img src="assests/traaficlite.jpg" alt="Project 3">
+                    </div>
                     <div class="project-info">
-                        <h3>Traffic Lite, Mumbai</h3>
-                        <p>Our Hydraulic Car Elevator is designed for efficient, safe, and smooth transportation of vehicles in multi-level parking structures.</p>
-                        <a href="#" class="read-more">Read More</a>
+                        <h3>Bussiness Park</h3>
+                        <p>At Traffic Lite in Ghatkopar, Super Elevators executed the installation of a high-capacity
+                            hydraulic car elevator. Designed to handle loads up to 2500 kg across G+4 floors, the system
+                            ensures reliable performance for vehicle movement. It features an energy-efficient hydraulic
+                            mechanism that delivers smooth and silent operation, ideal for urban spaces requiring
+                            efficient vertical car transportation.
+                        </p>
+                        <span class="project-category">Bussiness Park</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="project4-placeholder.jpg" alt="Project 4">
+                    </div>
+                    <div class="project-info">
+                        <h3>Commerce Plaza</h3>
+                        <p>Energy-efficient upgrades to 14 elevators in a busy commercial office complex.</p>
+                        <span class="project-category">Commercial</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section class="section cta">
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-container">
+                    <div class="testimonial active">
+                        <div class="testimonial-content">
+                            <div class="quote">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>The modernization project was completed ahead of schedule with minimal disruption to our
+                                tenants. The new elevators have been running flawlessly for over a year now.</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="client-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Property Manager, Skyline Tower</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="quote">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>The new smart control system has reduced our elevator wait times by 40%. Our hospital
+                                staff and patients have noticed the improvement in efficiency immediately.</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="client-info">
+                                <h4>Dr. Michael Patel</h4>
+                                <p>Facilities Director, Central Medical Center</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="quote">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>Our energy costs have decreased by 35% since modernizing our elevators. The investment is
+                                already paying for itself in less than two years.</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="client-info">
+                                <h4>Robert Chen</h4>
+                                <p>Building Owner, Commerce Plaza</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                    <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ready to Modernize Section -->
+    <section class="cta" id="contact">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Modernize Your Elevator?</h2>
-                <p>Contact our team today for a free assessment and quote. We'll help you determine the best modernization solution for your building and budget.</p>
-                <a href="#" class="btn">Contact Us Today</a>
+                <h2>Ready to Modernize Your Elevators?</h2>
+                <p>Take the first step toward a more efficient, safe, and valuable building. Contact our experts today
+                    for a free consultation and customized modernization plan.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button primary">Get Free Consultation</a>
+                    <a href="tel:+1234567890" class="cta-button secondary"><i class="fas fa-phone"></i> Call Us Now</a>
+                </div>
+            </div>
+            <div class="cta-image">
+                <img src="cta-placeholder.jpg" alt="Modern Elevator">
             </div>
         </div>
     </section>
-    
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>Superior Elevator Solutions has been providing high-quality elevator services since 1995, with a focus on innovation and customer satisfaction.</p>
+                <div class="footer-logo">
+                    <img src="assests/logo.png" alt="Company Logo">
+                    <h3>ElevateModern</h3>
+                    <p>Elevating buildings into the future</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">New Installations</a></li>
-                        <li><a href="#">Modernization</a></li>
-                        <li><a href="#">Maintenance</a></li>
-                        <li><a href="#">Repair Services</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li>Email: info@superiorelevator.com</li>
-                        <li>Phone: (123) 456-7890</li>
-                        <li>Address: 123 Elevator St, Mumbai, India</li>
-                    </ul>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Modernization</a></li>
+                            <li><a href="#">Maintenance</a></li>
+                            <li><a href="#">New Installation</a></li>
+                            <li><a href="#">Repairs</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Business St, City</a></li>
+                            <li><a href="#"><i class="fas fa-phone"></i> (123) 456-7890</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i> info@elevatemodernize.com</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Superior Elevator Solutions. All Rights Reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ElevateModern. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
