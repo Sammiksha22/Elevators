@@ -20,16 +20,28 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
     background: linear-gradient(90deg, #002244, #004080);
     transition: all 0.4s ease;
+    padding: 0.5rem 1rem; /* Consistent padding */
 }
+
 .navbar.scrolled {
     background: #001d3d;
     box-shadow: 0 2px 15px rgba(0,0,0,0.3);
 }
-.navbar-brand img {
+
+/* Logo styling - fixed aspect ratio */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0; /* Remove default padding */
+}
+
+.navbar-brand img.logo {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    object-fit: cover;
+    object-fit: contain; /* Changed from cover to contain */
+    background-color: #fff; /* Optional: adds a white background */
+    padding: 2px; /* Optional: gives a little padding inside the circle */
 }
 
 .nav-link {
@@ -37,8 +49,59 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 20px;
     transition: color 0.3s ease;
 }
+
 .nav-link:hover, .nav-link.active {
     color: #f7c948;
+}
+
+/* For mobile screens - ensure logo stays properly sized */
+@media (max-width: 768px) {
+    .navbar-brand img.logo {
+        width: 40px; /* Slightly smaller on mobile */
+        height: 40px; /* Maintain 1:1 aspect ratio */
+    }
+    
+    .navbar {
+        padding: 0.3rem 0.8rem; /* Slightly less padding on mobile */
+    }
+}
+
+/* Center navigation items in mobile view */
+@media (max-width: 991px) {
+    /* Center the navbar items */
+    .navbar-collapse {
+        text-align: center;
+    }
+    
+    .navbar-nav {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .navbar-nav .nav-item {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    .navbar-nav .nav-link {
+        display: inline-block;
+        margin-left: 0; /* Remove left margin in mobile view */
+        padding: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+    
+    /* Add a subtle divider between menu items */
+    .navbar-nav .nav-item:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.5rem;
+    }
+    
+    /* Active item styling */
+    .navbar-nav .nav-link.active {
+        font-weight: bold;
+    }
 }
 
 /* Back to Top Button */
