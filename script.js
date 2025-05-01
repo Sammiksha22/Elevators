@@ -201,26 +201,35 @@ hamburger.addEventListener('click', () => {
 
 // Close mobile menu when clicking links
 navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
     });
 });
 
 // Scroll to section when clicking on nav links
 navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        
+
+        // Skip if it's just "#" with no specific target
         if (targetId === '#') return;
-        
-        const targetSection = document.querySelector(targetId);
+
+        const sectionId = targetId.replace('#', '');
+        const targetSection = document.getElementById(sectionId);
         if (targetSection) {
+            // Smooth scroll to the section
             window.scrollTo({
-                top: targetSection.offsetTop - 80,
+                top: targetSection.offsetTop - 80, // Adjust for header height
                 behavior: 'smooth'
             });
+
+            // Update active class
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+        } else {
+            console.error(`Section with ID "${sectionId}" not found`);
         }
     });
 });
@@ -251,11 +260,11 @@ function showTestimonial(index) {
     testimonials.forEach(testimonial => {
         testimonial.classList.remove('active');
     });
-    
+
     dots.forEach(dot => {
         dot.classList.remove('active');
     });
-    
+
     testimonials[index].classList.add('active');
     dots[index].classList.add('active');
     currentTestimonial = index;
@@ -310,10 +319,10 @@ const revealElements = document.querySelectorAll('.benefit-card, .feature, .proj
 
 function revealOnScroll() {
     const windowHeight = window.innerHeight;
-    
+
     revealElements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
-        
+
         if (elementTop < windowHeight - 150) {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
@@ -346,36 +355,36 @@ testimonialSlider.addEventListener('mouseleave', () => {
 });
 
 // Form validation for contact form (if added later)
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.querySelector('#contact-form');
-    
+
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Basic validation
             const name = document.querySelector('#name');
             const email = document.querySelector('#email');
             const message = document.querySelector('#message');
-            
+
             if (name && name.value.trim() === '') {
                 alert('Please enter your name');
                 name.focus();
                 return false;
             }
-            
+
             if (email && email.value.trim() === '') {
                 alert('Please enter your email');
                 email.focus();
                 return false;
             }
-            
+
             if (message && message.value.trim() === '') {
                 alert('Please enter your message');
                 message.focus();
                 return false;
             }
-            
+
             // Simulate form submission
             alert('Thank you for your message. We will get back to you shortly!');
             contactForm.reset();
