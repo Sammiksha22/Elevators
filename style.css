@@ -62,7 +62,6 @@ h1, h2, h3, h4, h5, h6 {
     background: #f7c948;
     color: #002244;
 }
-
 /* Carousel Caption - Centered */
 .carousel-caption {
     background: rgba(0, 0, 0, 0.6);
@@ -74,6 +73,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     text-align: center;
     width: 80%;
+    display: block !important; /* Ensure visibility regardless of Bootstrap classes */
 }
 .carousel-caption h2 {
     font-size: 2.8rem;
@@ -96,20 +96,71 @@ h1, h2, h3, h4, h5, h6 {
     background: #fff;
     color: #001d3d;
 }
-
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+.carousel-inner {
+    max-width: 100%;
+    overflow: hidden;
+}
+  
 /* Mobile Fix */
 @media (max-width: 768px) {
   .carousel-caption {
-    top: auto;
-    bottom: 20px;
-    transform: none;
-    width: 90%;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    border-radius: 10px;
+    /* Fixed positioning to ensure visibility */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Better mobile styling */
+    width: 85%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8); /* Darker for better contrast */
+    z-index: 10; /* Ensure it's above other elements */
+  }
+  
+  /* Make text smaller on mobile */
+  .carousel-caption h2 {
+    font-size: 1.5rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .carousel-caption p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Make button more prominent */
+  .carousel-caption .btn {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  /* Fix carousel height issues */
+  .carousel-item {
+    height: 300px; /* Fixed height for mobile */
+    overflow: hidden;
+  }
+  
+  .carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Make navigation arrows more visible */
+  .carousel-control-prev, .carousel-control-next {
+    width: 10%;
+    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.3);
   }
 }
-
 
 /* Section Headers */
 .section-header h2 {
