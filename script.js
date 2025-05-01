@@ -391,3 +391,183 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+//upgrade section learn more
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (navToggle) {
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+    
+    // Add scrolling animation to elements
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.feature-card, .tech-item, .benefit-card');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (elementPosition < screenPosition) {
+                element.classList.add('fade-in');
+            }
+        });
+    };
+    
+    // Initial check for elements in view
+    animateOnScroll();
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Handle comparison slider interaction
+    const comparisonSlider = document.querySelector('.comparison-slider');
+    if (comparisonSlider) {
+        const before = document.querySelector('.before');
+        const sliderHandle = document.querySelector('.slider-handle');
+        let isDragging = false;
+        
+        const moveSlider = function(x) {
+            let position = (x - comparisonSlider.getBoundingClientRect().left) / comparisonSlider.offsetWidth;
+            
+            // Limit position between 0 and 1
+            position = Math.max(0, Math.min(1, position));
+            
+            // Update before element width
+            before.style.width = position * 100 + '%';
+            
+            // Update slider handle position
+            sliderHandle.style.left = position * 100 + '%';
+        };
+        
+        // Mouse events
+        sliderHandle.addEventListener('mousedown', function() {
+            isDragging = true;
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+            if (isDragging) {
+                moveSlider(e.clientX);
+            }
+        });
+        
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+        
+        // Touch events
+        sliderHandle.addEventListener('touchstart', function() {
+            isDragging = true;
+        });
+        
+        document.addEventListener('touchmove', function(e) {
+            if (isDragging) {
+                moveSlider(e.touches[0].clientX);
+            }
+        });
+        
+        document.addEventListener('touchend', function() {
+            isDragging = false;
+        });
+        
+        // Click on slider
+        comparisonSlider.addEventListener('click', function(e) {
+            moveSlider(e.clientX);
+        });
+    }
+    
+    // Animation for numbers in stats
+    const animateValue = (element, start, end, duration) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            
+            // Handle percentage values
+            if (element.textContent.includes('%')) {
+                element.textContent = value + '%';
+            } 
+            // Handle x values (like 2x)
+            else if (element.textContent.includes('x')) {
+                element.textContent = value + 'x';
+            }
+            // Handle other values
+            else {
+                element.textContent = value;
+            }
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+    
+    // Fix navbar on scroll
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            }
+        });
+    });
+    
+    // Add glitch effect to glitch-text elements
+    const glitchTexts = document.querySelectorAll('.glitch-text');
+    
+    glitchTexts.forEach(text => {
+        const content = text.textContent;
+        text.setAttribute('data-text', content);
+    });
+    
+    // Back to top button
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.classList.add('back-to-top');
+    scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(scrollToTopBtn);
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 700) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+    
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
