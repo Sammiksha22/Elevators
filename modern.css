@@ -687,14 +687,12 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 50px;
 }
 
 .footer-logo {
     flex: 1;
-    min-width: 250px;
-    margin-right: 50px;
-    margin-bottom: 30px;
+    min-width: 200px;
+    margin-right: 30px;
 }
 
 .footer-logo img {
@@ -721,8 +719,10 @@ footer {
 }
 
 .link-column {
-    min-width: 150px;
-    margin-bottom: 30px;
+    flex: 1;
+    min-width: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .link-column h4 {
@@ -948,5 +948,11 @@ footer {
     
     .testimonial-content p {
         font-size: 16px;
+    }
+}
+@media (max-width: 768px) {
+    .footer-logo, .link-column {
+        flex: 100%;
+        margin-right: 0;
     }
 }
