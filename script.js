@@ -419,197 +419,173 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // 3D Animation 
-     // Create floors
-     const floorCount = 10;
-     const elevatorShaft = document.querySelector('.elevator-shaft');
-     const elevatorCar = document.querySelector('.elevator-car');
-     const floorHeight = elevatorShaft.clientHeight / floorCount;
-     
-     for(let i = 0; i < floorCount; i++) {
-         const floorNum = floorCount - i;
-         const yPos = i * floorHeight;
-         
-         // Create floor line
-         const floor = document.createElement('div');
-         floor.className = 'floor';
-         floor.style.bottom = `${yPos}px`;
-         floor.dataset.floor = floorNum;
-         elevatorShaft.appendChild(floor);
-         
-         // Create floor label
-         const label = document.createElement('div');
-         label.className = 'floor-label';
-         label.textContent = `Floor ${floorNum}`;
-         label.style.bottom = `${yPos - 10}px`;
-         elevatorShaft.appendChild(label);
-     }
-     
-     // Create floor buttons for mobile app
-     const floorSelector = document.querySelector('.floor-selector');
-     for(let i = floorCount; i >= 1; i--) {
-         const btn = document.createElement('div');
-         btn.className = 'floor-btn';
-         btn.textContent = i;
-         btn.dataset.floor = i;
-         floorSelector.appendChild(btn);
-         
-         btn.addEventListener('click', function() {
-             selectFloor(i);
-         });
-     }
-     
-     // Function to create particles
-     function createParticles() {
-         const particles = document.querySelector('.particles');
-         for(let i = 0; i < 30; i++) {
-             const particle = document.createElement('div');
-             particle.className = 'particle';
-             particle.style.left = `${Math.random() * 100}%`;
-             particle.style.top = `${Math.random() * 100}%`;
-             particle.style.opacity = Math.random() * 0.5 + 0.2;
-             particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
-             particle.style.animationDelay = `${Math.random() * 5}s`;
-             particles.appendChild(particle);
-         }
-     }
-     
-     createParticles();
-     
-     // Add glow effect following mouse
-     const scene = document.querySelector('.elevator-scene');
-     const glow = document.createElement('div');
-     glow.className = 'glow';
-     scene.appendChild(glow);
-     
-     scene.addEventListener('mousemove', function(e) {
-         const rect = scene.getBoundingClientRect();
-         const x = e.clientX - rect.left;
-         const y = e.clientY - rect.top;
-         
-         glow.style.left = `${x - 150}px`;
-         glow.style.top = `${y - 150}px`;
-     });
-     
-     // Current elevator state
-     let currentFloor = 1;
-     let destinationFloor = null;
-     let doorsOpen = false;
-     
-     // Handle floor selection
-     function selectFloor(floor) {
-         if(floor === currentFloor && !doorsOpen) {
-             toggleDoors();
-             return;
-         }
-         
-         destinationFloor = floor;
-         document.getElementById('destination-floor').textContent = floor;
-         
-         // Show notification
-         const notification = document.querySelector('.notification');
-         notification.textContent = `Floor Selected: ${floor}`;
-         notification.classList.add('show');
-         setTimeout(() => {
-             notification.classList.remove('show');
-         }, 2000);
-         
-         // If doors are open, close them first
-         if(doorsOpen) {
-             toggleDoors();
-             setTimeout(() => {
-                 moveElevator(floor);
-             }, 1500);
-         } else {
-             moveElevator(floor);
-         }
-         
-         // Update active floor button
-         document.querySelectorAll('.floor-btn').forEach(btn => {
-             btn.classList.remove('active');
-             if(parseInt(btn.dataset.floor) === floor) {
-                 btn.classList.add('active');
-             }
-         });
-     }
-     
-     // Move elevator to specified floor
-     function moveElevator(floor) {
-         const floorHeight = elevatorShaft.clientHeight / floorCount;
-         const newPosition = (floor - 1) * floorHeight;
-         
-         // Update elevator position
-         elevatorCar.style.bottom = `${newPosition}px`;
-         
-         // Update status
-         document.querySelector('.status-value').textContent = 'Moving';
-         
-         // After movement completes
-         setTimeout(() => {
-             currentFloor = floor;
-             document.getElementById('current-floor').textContent = floor;
-             document.querySelector('.status-value').textContent = 'Ready';
-             
-             // Open doors after arrival
-             toggleDoors();
-             
-             // Reset destination
-             setTimeout(() => {
-                 document.getElementById('destination-floor').textContent = '-';
-                 destinationFloor = null;
-             }, 1500);
-         }, 2000);
-     }
-     
-     // Toggle doors
-     function toggleDoors() {
-         const leftDoor = document.querySelector('.door.left');
-         const rightDoor = document.querySelector('.door.right');
-         
-         if(doorsOpen) {
-             leftDoor.classList.remove('open');
-             rightDoor.classList.remove('open');
-             doorsOpen = false;
-         } else {
-             leftDoor.classList.add('open');
-             rightDoor.classList.add('open');
-             doorsOpen = true;
-         }
-     }
-     
-     // Door button event
-     document.querySelector('.door-btn').addEventListener('click', toggleDoors);
-     
-     // Call elevator button event
-     document.querySelector('.call').addEventListener('click', function() {
-         if(destinationFloor === null) {
-             // Show notification
-             const notification = document.querySelector('.notification');
-             notification.textContent = 'Please select a floor first';
-             notification.classList.add('show');
-             setTimeout(() => {
-                 notification.classList.remove('show');
-             }, 2000);
-             return;
-         }
-         
-         selectFloor(destinationFloor);
-     });
-     
-     // Demo animation - occasionally move elevator randomly
-     function randomMove() {
-         if(destinationFloor === null) {
-             const randomFloor = Math.floor(Math.random() * floorCount) + 1;
-             if(randomFloor !== currentFloor) {
-                 selectFloor(randomFloor);
-             }
-         }
-         
-         setTimeout(randomMove, Math.random() * 20000 + 10000);
-     }
-     
-     // Start random movement after 15 seconds
-     setTimeout(randomMove, 15000);
- });
+    document.addEventListener('DOMContentLoaded', function () {
+        const floorCount = 10;
+        const elevatorShaft = document.querySelector('.elevator-shaft');
+        const elevatorCar = document.querySelector('.elevator-car');
+        const floorHeight = elevatorShaft.clientHeight / floorCount;
+    
+        for (let i = 0; i < floorCount; i++) {
+            const floorNum = floorCount - i;
+            const yPos = i * floorHeight;
+    
+            const floor = document.createElement('div');
+            floor.className = 'floor';
+            floor.style.bottom = `${yPos}px`;
+            floor.dataset.floor = floorNum;
+            elevatorShaft.appendChild(floor);
+    
+            const label = document.createElement('div');
+            label.className = 'floor-label';
+            label.textContent = `Floor ${floorNum}`;
+            label.style.bottom = `${yPos - 10}px`;
+            elevatorShaft.appendChild(label);
+        }
+    
+        const floorSelector = document.querySelector('.floor-selector');
+        for (let i = floorCount; i >= 1; i--) {
+            const btn = document.createElement('div');
+            btn.className = 'floor-btn';
+            btn.textContent = i;
+            btn.dataset.floor = i;
+            floorSelector.appendChild(btn);
+    
+            btn.addEventListener('click', function () {
+                selectFloor(i);
+            });
+        }
+    
+        function createParticles() {
+            const particles = document.querySelector('.particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particles.appendChild(particle);
+            }
+        }
+    
+        createParticles();
+    
+        const scene = document.querySelector('.elevator-scene');
+        const glow = document.createElement('div');
+        glow.className = 'glow';
+        scene.appendChild(glow);
+    
+        scene.addEventListener('mousemove', function (e) {
+            const rect = scene.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+    
+            glow.style.left = `${x - 150}px`;
+            glow.style.top = `${y - 150}px`;
+        });
+    
+        let currentFloor = 1;
+        let destinationFloor = null;
+        let doorsOpen = false;
+    
+        function selectFloor(floor) {
+            if (floor === currentFloor && !doorsOpen) {
+                toggleDoors();
+                return;
+            }
+    
+            destinationFloor = floor;
+            document.getElementById('destination-floor').textContent = floor;
+    
+            const notification = document.querySelector('.notification');
+            notification.textContent = `Floor Selected: ${floor}`;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+    
+            if (doorsOpen) {
+                toggleDoors();
+                setTimeout(() => {
+                    moveElevator(floor);
+                }, 1500);
+            } else {
+                moveElevator(floor);
+            }
+    
+            document.querySelectorAll('.floor-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.floor) === floor) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+    
+        function moveElevator(floor) {
+            const newPosition = (floor - 1) * floorHeight;
+            elevatorCar.style.bottom = `${newPosition}px`;
+    
+            document.querySelector('.status-value').textContent = 'Moving';
+    
+            setTimeout(() => {
+                currentFloor = floor;
+                document.getElementById('current-floor').textContent = floor;
+                document.querySelector('.status-value').textContent = 'Ready';
+                toggleDoors();
+    
+                setTimeout(() => {
+                    document.getElementById('destination-floor').textContent = '-';
+                    destinationFloor = null;
+                }, 1500);
+            }, 2000);
+        }
+    
+        function toggleDoors() {
+            const leftDoor = document.querySelector('.door.left');
+            const rightDoor = document.querySelector('.door.right');
+    
+            if (doorsOpen) {
+                leftDoor.classList.remove('open');
+                rightDoor.classList.remove('open');
+                doorsOpen = false;
+            } else {
+                leftDoor.classList.add('open');
+                rightDoor.classList.add('open');
+                doorsOpen = true;
+            }
+        }
+    
+        document.querySelector('.door-btn').addEventListener('click', toggleDoors);
+    
+        document.querySelector('.call').addEventListener('click', function () {
+            if (destinationFloor === null) {
+                const notification = document.querySelector('.notification');
+                notification.textContent = 'Please select a floor first';
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2000);
+                return;
+            }
+    
+            selectFloor(destinationFloor);
+        });
+    
+        function randomMove() {
+            if (destinationFloor === null) {
+                const randomFloor = Math.floor(Math.random() * floorCount) + 1;
+                if (randomFloor !== currentFloor) {
+                    selectFloor(randomFloor);
+                }
+            }
+    
+            setTimeout(randomMove, Math.random() * 20000 + 10000);
+        }
+    
+        setTimeout(randomMove, 15000);
+    });
+    
 
 
     // Testimonial Slider

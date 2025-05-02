@@ -136,7 +136,7 @@ header {
 
 /* Hero Section */
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('elevator-hero.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assests/upgrade.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -334,6 +334,51 @@ body {
     color: var(--light);
     overflow-x: hidden;
     perspective: 1000px;
+}
+
+.elevator-text-heading {
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+    color: white;
+}
+
+.animated-heading {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #00d1ff;
+    text-transform: uppercase;
+    animation: glow-in 1.5s ease-out forwards;
+    opacity: 0;
+}
+
+.animated-subtext {
+    font-size: 1.2rem;
+    color: #ffffffcc;
+    margin-top: 10px;
+    animation: fade-in 2s ease 1.2s forwards;
+    opacity: 0;
+}
+
+@keyframes glow-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+        text-shadow: none;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        text-shadow: 0 0 10px #00d1ff, 0 0 20px #00d1ff;
+    }
+}
+
+@keyframes fade-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .container {
@@ -746,6 +791,9 @@ h2 {
     border: 1px solid rgba(100, 100, 255, 0.3);
     transition: all 0.3s ease;
 }
+.feature-card h3 {
+    color: #00bfff; 
+}
 
 .feature-card:hover {
     transform: translateY(-5px);
@@ -770,7 +818,7 @@ h2 {
 }
 
 .feature-desc {
-    color: #bbb;
+    color: white;
     font-size: 14px;
     line-height: 1.6;
 }
