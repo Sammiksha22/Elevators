@@ -983,107 +983,138 @@ h2 {
     display: block;
 }
 
-/* Testimonials */
-.testimonials {
-    padding: 8rem 5%;
-    background-color: #f9f9f9;
+/* === TESTIMONIALS SECTION === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.testimonial-slider {
-    max-width: 1000px;
-    margin: 0 auto;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #00285e;
+    color: #fff;
+}
+
+.testimonial-section {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.testimonial-container {
     position: relative;
+    overflow: hidden;
+    padding: 40px 0;
 }
 
-.testimonial-card {
-    background: white;
-    border-radius: 12px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    margin: 0 0.5rem;
+.testimonial-slide {
+    background-color: #103466;
+    padding: 40px;
+    border-radius: 8px;
+    text-align: center;
     display: none;
-    animation: fadeIn 1s ease-out;
+    animation: fadeEffect 1s;
 }
 
-.testimonial-card.active {
+.testimonial-slide.active {
     display: block;
 }
 
 .quote-icon {
-    font-size: 2rem;
-    color: var(--secondary-color);
-    opacity: 0.7;
-    margin-bottom: 1.5rem;
+    color: #ff9800;
+    font-size: 48px;
+    margin-bottom: 20px;
 }
 
 .testimonial-text {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
-.testimonial-author {
-    text-align: right;
+.rating {
+    margin: 20px 0;
 }
 
-.author-name {
-    font-weight: 600;
-    font-size: 1.1rem;
+.star {
+    color: #ff9800;
+    font-size: 24px;
+    margin: 0 2px;
 }
 
-.author-title {
-    color: var(--gray-color);
+.client-info {
+    margin-top: 20px;
 }
 
-.slider-controls {
+.client-name {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.client-position {
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+.navigation-arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-    gap: 1rem;
+    justify-content: space-between;
+    z-index: 2;
+    transform: translateY(-50%);
 }
 
-.prev-btn,
-.next-btn {
-    background: var(--primary-color);
-    color: white;
+.arrow {
+    background-color: rgba(0, 0, 0, 0.3);
     width: 40px;
     height: 40px;
-    border: none;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    transition: background-color 0.3s;
+    color: white;
+    font-size: 18px;
+    border: none;
 }
 
-.prev-btn:hover,
-.next-btn:hover {
-    background: var(--secondary-color);
-    transform: scale(1.1);
+.arrow:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-.slider-dots {
-    display: flex;
-    gap: 0.5rem;
+.dots-container {
+    text-align: center;
+    margin-top: 20px;
 }
 
 .dot {
+    display: inline-block;
     width: 12px;
     height: 12px;
-    background: #ddd;
+    margin: 0 5px;
     border-radius: 50%;
+    background-color: #3a5a86;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    transition: background-color 0.3s;
+    border: none;
 }
 
 .dot.active {
-    background: var(--primary-color);
-    transform: scale(1.2);
+    background-color: #ff9800;
 }
 
-/* FAQ Section */
+@keyframes fadeEffect {
+    from {opacity: 0.7;}
+    to {opacity: 1;}
+}
+  
+
+/* === FAQ Section ==== */
 .faq-section {
     padding: 8rem 5%;
     background-color: white;
