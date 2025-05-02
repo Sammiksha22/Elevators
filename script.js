@@ -393,181 +393,195 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //upgrade section learn more
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile navigation toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (navToggle) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+// Wait for the DOM to fully load
+document.addEventListener('DOMContentLoaded', function () {
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    if (hamburger) {
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+
+            // Toggle hamburger animation
+            const bars = hamburger.querySelectorAll('.bar');
+            if (hamburger.classList.contains('active')) {
+                bars[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            } else {
+                bars[0].style.transform = 'none';
+                bars[1].style.opacity = '1';
+                bars[2].style.transform = 'none';
+            }
         });
     }
-    
-    // Add scrolling animation to elements
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.feature-card, .tech-item, .benefit-card');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.2;
-            
-            if (elementPosition < screenPosition) {
-                element.classList.add('fade-in');
+
+    // Interactive Elevator Demo
+    const demoBtn = document.getElementById('demoBtn');
+    const leftDoor = document.querySelector('.left-door');
+    const rightDoor = document.querySelector('.right-door');
+    const panelScreen = document.querySelector('.panel-screen');
+
+    if (demoBtn) {
+        demoBtn.addEventListener('click', function () {
+            const isOpen = leftDoor.classList.contains('open');
+
+            if (isOpen) {
+                leftDoor.classList.remove('open');
+                rightDoor.classList.remove('open');
+                demoBtn.textContent = 'Open Doors';
+                if (panelScreen) panelScreen.textContent = 'Closed';
+            } else {
+                leftDoor.classList.add('open');
+                rightDoor.classList.add('open');
+                demoBtn.textContent = 'Close Doors';
+                if (panelScreen) panelScreen.textContent = 'Open';
             }
-        });
-    };
-    
-    // Initial check for elements in view
-    animateOnScroll();
-    
-    // Listen for scroll events
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Handle comparison slider interaction
-    const comparisonSlider = document.querySelector('.comparison-slider');
-    if (comparisonSlider) {
-        const before = document.querySelector('.before');
-        const sliderHandle = document.querySelector('.slider-handle');
-        let isDragging = false;
-        
-        const moveSlider = function(x) {
-            let position = (x - comparisonSlider.getBoundingClientRect().left) / comparisonSlider.offsetWidth;
-            
-            // Limit position between 0 and 1
-            position = Math.max(0, Math.min(1, position));
-            
-            // Update before element width
-            before.style.width = position * 100 + '%';
-            
-            // Update slider handle position
-            sliderHandle.style.left = position * 100 + '%';
-        };
-        
-        // Mouse events
-        sliderHandle.addEventListener('mousedown', function() {
-            isDragging = true;
-        });
-        
-        document.addEventListener('mousemove', function(e) {
-            if (isDragging) {
-                moveSlider(e.clientX);
-            }
-        });
-        
-        document.addEventListener('mouseup', function() {
-            isDragging = false;
-        });
-        
-        // Touch events
-        sliderHandle.addEventListener('touchstart', function() {
-            isDragging = true;
-        });
-        
-        document.addEventListener('touchmove', function(e) {
-            if (isDragging) {
-                moveSlider(e.touches[0].clientX);
-            }
-        });
-        
-        document.addEventListener('touchend', function() {
-            isDragging = false;
-        });
-        
-        // Click on slider
-        comparisonSlider.addEventListener('click', function(e) {
-            moveSlider(e.clientX);
         });
     }
-    
-    // Animation for numbers in stats
-    const animateValue = (element, start, end, duration) => {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const value = Math.floor(progress * (end - start) + start);
-            
-            // Handle percentage values
-            if (element.textContent.includes('%')) {
-                element.textContent = value + '%';
-            } 
-            // Handle x values (like 2x)
-            else if (element.textContent.includes('x')) {
-                element.textContent = value + 'x';
-            }
-            // Handle other values
-            else {
-                element.textContent = value;
-            }
-            
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    };
-    
-    // Fix navbar on scroll
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+
+    // Testimonial Slider
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+
+    // Initialize first slide
+    if (testimonialCards.length > 0) {
+        testimonialCards[0].classList.add('active');
+    }
+
+    function showSlide(index) {
+        // Hide all slides
+        testimonialCards.forEach(card => {
+            card.classList.remove('active');
+        });
+
+        // Remove active class from all dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+
+        // Show the current slide and activate dot
+        testimonialCards[index].classList.add('active');
+        dots[index].classList.add('active');
+    }
+
+    if (prevBtn && nextBtn) {
+        // Next slide button
+        nextBtn.addEventListener('click', function () {
+            currentSlide = (currentSlide + 1) % testimonialCards.length;
+            showSlide(currentSlide);
+        });
+
+        // Previous slide button
+        prevBtn.addEventListener('click', function () {
+            currentSlide = (currentSlide - 1 + testimonialCards.length) % testimonialCards.length;
+            showSlide(currentSlide);
+        });
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', function () {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Auto slide every 5 seconds
+        setInterval(function () {
+            currentSlide = (currentSlide + 1) % testimonialCards.length;
+            showSlide(currentSlide);
+        }, 5000);
+    }
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', function () {
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            item.classList.toggle('active');
+        });
     });
-    
+
     // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+    const anchors = document.querySelectorAll('a[href^="#"]');
+
+    anchors.forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop - 100,
                     behavior: 'smooth'
                 });
-                
+
                 // Close mobile menu if open
-                if (navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
+                if (navLinks && navLinks.classList.contains('active')) {
+                    hamburger.click();
                 }
             }
         });
     });
-    
-    // Add glitch effect to glitch-text elements
-    const glitchTexts = document.querySelectorAll('.glitch-text');
-    
-    glitchTexts.forEach(text => {
-        const content = text.textContent;
-        text.setAttribute('data-text', content);
-    });
-    
-    // Back to top button
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.classList.add('back-to-top');
-    scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    document.body.appendChild(scrollToTopBtn);
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 700) {
-            scrollToTopBtn.classList.add('show');
-        } else {
-            scrollToTopBtn.classList.remove('show');
-        }
-    });
-    
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+
+    // Animation on scroll
+    const animateElements = document.querySelectorAll('.feature-card, .tech-item, .process-step, .testimonial-card, .faq-item');
+
+    function checkScroll() {
+        const triggerBottom = window.innerHeight * 0.8;
+
+        animateElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+
+            if (elementTop < triggerBottom) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
         });
+    }
+
+    // Set initial state for animation
+    animateElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
+
+    // Check for elements in view on load and scroll
+    window.addEventListener('load', checkScroll);
+    window.addEventListener('scroll', checkScroll);
+
+    // Preload background images
+    function preloadImages() {
+        const images = [
+            'elevator-hero.jpg',
+            'elevator-tech.jpg',
+            'logo.png'
+        ];
+
+        images.forEach(image => {
+            const img = new Image();
+            img.src = image;
+        });
+    }
+
+    preloadImages();
 });
