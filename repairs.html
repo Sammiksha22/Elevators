@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevator Repair Services - Learn More</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffc107;
+            --text-color: #333;
+            --light-text: #6c757d;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        /* Sections */
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* Common Issues Section */
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .issue-card {
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .issue-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Response Times */
+        .response-times {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        .response-times th, .response-times td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .response-times th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .response-times tr:nth-child(even) {
+            background-color: var(--secondary-color);
+        }
+
+        /* Diagnostic */
+        .diagnostic-list {
+            list-style-type: none;
+            margin-top: 1.5rem;
+        }
+
+        .diagnostic-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .diagnostic-list li::before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        /* Parts Replacement */
+        .parts-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .part-item {
+            padding: 1rem;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Modernization */
+        .modernization-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .mod-option {
+            flex: 1 1 300px;
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .mod-option h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        /* Warranty */
+        .warranty-info {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .warranty-features {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .warranty-feature {
+            display: flex;
+            align-items: center;
+        }
+
+        .warranty-feature::before {
+            content: "✓";
+            color: green;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Support */
+        .support-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .support-card {
+            background-color: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .support-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .support-card h3 svg {
+            margin-right: 0.5rem;
+        }
+
+        /* Before/After */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .before-after {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .comparison {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .comparison {
+                flex-direction: row;
+            }
+        }
+
+        .comparison-item {
+            flex: 1;
+            padding: 1rem;
+        }
+
+        .comparison-item h4 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .before {
+            background-color: #f8d7da;
+        }
+
+        .after {
+            background-color: #d4edda;
+        }
+
+        .image-placeholder {
+            height: 200px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        /* Emergency Contact */
+        .emergency-contact {
+            background-color: #f8d7da;
+            border-left: 5px solid #dc3545;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item svg {
+            margin-right: 0.75rem;
+            color: var(--primary-color);
+        }
+
+        /* Call to Action */
+        .cta {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background-color: #004494;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .issues-grid,
+            .parts-list,
+            .modernization-options,
+            .support-info,
+            .gallery,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Elevator Repair Services</h1>
+            <p class="subtitle">Professional solutions for all your elevator maintenance and repair needs</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Common Elevator Issues Section -->
+        <section class="section" id="issues">
+            <h2>Common Elevator Issues and Solutions</h2>
+            <p>Our experienced technicians can diagnose and repair a wide range of elevator problems. Here are some common issues we encounter and how we solve them:</p>
+            
+            <div class="issues-grid">
+                <div class="issue-card">
+                    <h3>Unusual Noises</h3>
+                    <p>Grinding, banging, or squeaking sounds usually indicate mechanical problems with the elevator's components. Our technicians will identify the source and replace or repair the affected parts.</p>
+                </div>
+                
+                <div class="issue-card">
+                    <h3>Door Malfunctions</h3>
+                    <p>Issues with doors not opening/closing properly are often related to sensors, track alignment, or motor problems. We'll recalibrate systems and replace worn components.</p>
+                </div>
+                
+                <div class="issue-card">
+                    <h3>Uneven Stopping</h3>
+                    <p>When elevators stop above or below floor level, it indicates leveling issues. We'll adjust the leveling system and check for mechanical or electrical faults.</p>
+                </div>
+                
+                <div class="issue-card">
+                    <h3>Control Panel Issues</h3>
+                    <p>Buttons not responding or lighting up incorrectly often indicates electrical problems. Our team can repair or replace control panels with minimal downtime.</p>
+                </div>
+                
+                <div class="issue-card">
+                    <h3>Power Failures</h3>
+                    <p>We can diagnose electrical issues causing power failures and implement reliable backup systems to prevent entrapment during outages.</p>
+                </div>
+                
+                <div class="issue-card">
+                    <h3>Excessive Vibration</h3>
+                    <p>Vibration often indicates problems with guide rails, rollers, or motor issues. We'll restore smooth operation through precision adjustments.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Response Times Section -->
+        <section class="section" id="response-times">
+            <h2>Emergency Repair Response Times</h2>
+            <p>We understand that elevator downtime can significantly impact your building's operations. That's why we're committed to rapid response times based on the severity of the issue:</p>
+            
+            <table class="response-times">
+                <thead>
+                    <tr>
+                        <th>Emergency Type</th>
+                        <th>Response Time</th>
+                        <th>Service Coverage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Entrapment</td>
+                        <td><strong>30 minutes or less</strong></td>
+                        <td>24/7/365</td>
+                    </tr>
+                    <tr>
+                        <td>Complete Shutdown</td>
+                        <td><strong>1-2 hours</strong></td>
+                        <td>24/7/365</td>
+                    </tr>
+                    <tr>
+                        <td>Safety System Failure</td>
+                        <td><strong>2-4 hours</strong></td>
+                        <td>24/7/365</td>
+                    </tr>
+                    <tr>
+                        <td>Performance Issues</td>
+                        <td><strong>Same day</strong></td>
+                        <td>Business hours</td>
+                    </tr>
+                    <tr>
+                        <td>Cosmetic Issues</td>
+                        <td><strong>24-48 hours</strong></td>
+                        <td>Business hours</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Diagnostic Capabilities Section -->
+        <section class="section" id="diagnostic">
+            <h2>Diagnostic Capabilities</h2>
+            <p>Our technicians use state-of-the-art diagnostic equipment and techniques to quickly identify the root cause of elevator issues:</p>
+            
+            <ul class="diagnostic-list">
+                <li><strong>Advanced Computer Diagnostics</strong> - Our technicians use proprietary software to connect with your elevator's control systems, providing real-time data and error code analysis.</li>
+                <li><strong>Mechanical Inspection</strong> - Comprehensive assessment of all mechanical components including cables, pulleys, door mechanisms, and safety systems.</li>
+                <li><strong>Electrical Testing</strong> - Complete analysis of electrical circuits, motors, and control panels to identify faults or potential issues.</li>
+                <li><strong>Vibration Analysis</strong> - Specialized equipment to detect abnormal vibrations that could indicate alignment issues or component wear.</li>
+                <li><strong>Remote Monitoring</strong> - Ongoing system monitoring that can detect issues before they cause breakdowns.</li>
+                <li><strong>Safety System Verification</strong> - Rigorous testing of all safety mechanisms to ensure proper operation in emergency situations.</li>
+            </ul>
+        </section>
+
+        <!-- Parts Replacement Section -->
+        <section class="section" id="parts">
+            <h2>Parts Replacement Information</h2>
+            <p>We maintain an extensive inventory of elevator parts to ensure quick replacement with minimal downtime. Our parts replacement service includes:</p>
+            
+            <div class="parts-list">
+                <div class="part-item">
+                    <strong>Motors & Drives</strong>
+                    <p>Replacement of main drive motors, door motors, and variable frequency drives.</p>
+                </div>
+                
+                <div class="part-item">
+                    <strong>Control Systems</strong>
+                    <p>Modernization or replacement of outdated control panels and systems.</p>
+                </div>
+                
+                <div class="part-item">
+                    <strong>Door Components</strong>
+                    <p>Door operators, tracks, rollers, and safety edges.</p>
+                </div>
+                
+                <div class="part-item">
+                    <strong>Cables & Ropes</strong>
+                    <p>Traction cables, compensation ropes, and governor ropes.</p>
+                </div>
+                
+                <div class="part-item">
+                    <strong>Safety Devices</strong>
+                    <p>Governors, buffers, and emergency braking systems.</p>
+                </div>
+                
+                <div class="part-item">
+                    <strong>Fixtures</strong>
+                    <p>Call buttons, position indicators, and cab interior fixtures.</p>
+                </div>
+                
+                <div class="part-item">
+                    <strong>Rollers & Guides</strong>
+                    <p>Car and counterweight guide rollers and sliding guides.</p>
+                </div>
+                
+                <div class="part-item">
+                    <strong>Sensors</strong>
+                    <p>Position sensors, door safety sensors, and load weighing devices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modernization Options Section -->
+        <section class="section" id="modernization">
+            <h2>Modernization Options for Aging Systems</h2>
+            <p>Upgrade your aging elevator system for improved reliability, energy efficiency, and user experience:</p>
+            
+            <div class="modernization-options">
+                <div class="mod-option">
+                    <h3>Control System Upgrades</h3>
+                    <p>Replace outdated relay logic or early microprocessor controls with modern computerized systems that offer improved reliability, diagnostics, and energy efficiency.</p>
+                </div>
+                
+                <div class="mod-option">
+                    <h3>Drive System Modernization</h3>
+                    <p>Upgrade to modern variable frequency drives (VFD) or permanent magnet motors for smoother operation, better speed control, and reduced energy consumption.</p>
+                </div>
+                
+                <div class="mod-option">
+                    <h3>Door System Upgrades</h3>
+                    <p>Replace older door operators with modern systems featuring advanced safety sensors and smoother, quieter operation.</p>
+                </div>
+                
+                <div class="mod-option">
+                    <h3>Fixture Modernization</h3>
+                    <p>Update call buttons, indicators, and cab fixtures with modern designs, LED lighting, and ADA-compliant features.</p>
+                </div>
+                
+                <div class="mod-option">
+                    <h3>Cab Interior Renovation</h3>
+                    <p>Refresh your elevator's interior with modern materials, energy-efficient lighting, and updated aesthetics.</p>
+                </div>
+                
+                <div class="mod-option">
+                    <h3>Safety System Enhancements</h3>
+                    <p>Upgrade safety features to meet or exceed current code requirements, including advanced door protection and emergency communication systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repair Warranty Section -->
+        <section class="section" id="warranty">
+            <h2>Repair Warranty Information</h2>
+            <p>We stand behind our work with comprehensive warranty coverage to give you peace of mind:</p>
+            
+            <div class="warranty-info">
+                <h3>Our Standard Warranty Includes:</h3>
+                <div class="warranty-features">
+                    <div class="warranty-feature">1-year parts warranty</div>
+                    <div class="warranty-feature">90-day labor warranty</div>
+                    <div class="warranty-feature">24/7 technical support</div>
+                    <div class="warranty-feature">Priority service response</div>
+                    <div class="warranty-feature">No-cost follow-up inspections</div>
+                    <div class="warranty-feature">Transferable coverage</div>
+                </div>
+                
+                <h3 style="margin-top: 1.5rem;">Extended Warranty Options:</h3>
+                <p>For additional protection, ask about our extended warranty plans that can provide coverage for up to 5 years on major components and systems.</p>
+            </div>
+        </section>
+
+        <!-- 24/7 Support Details Section -->
+        <section class="section" id="support">
+            <h2>24/7 Support Details</h2>
+            <p>Our around-the-clock support ensures that help is always available when you need it:</p>
+            
+            <div class="support-info">
+                <div class="support-card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        Emergency Hotline
+                    </h3>
+                    <p>Dedicated emergency line answered by live technicians 24/7/365, not a call center.</p>
+                </div>
+                
+                <div class="support-card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                        Live Chat Support
+                    </h3>
+                    <p>Technical assistance available through our website or mobile app at any time.</p>
+                </div>
+                
+                <div class="support-card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        Remote Diagnostics
+                    </h3>
+                    <p>Many issues can be diagnosed remotely, allowing for faster resolution and reduced downtime.</p>
+                </div>
+                
+                <div class="support-card">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                        Online Portal
+                    </h3>
+                    <p>Access service history, schedule maintenance, and submit support requests through our customer portal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Before/After Repair Examples Section -->
+        <section class="section" id="examples">
+            <h2>Before/After Repair Examples</h2>
+            <p>See the difference our repair services can make with these real-world examples:</p>
+            
+            <div class="gallery">
+                <div class="before-after">
+                    <h3 style="text-align: center; padding: 1rem;">Control System Upgrade</h3>
+                    <div class="comparison">
+                        <div class="comparison-item before">
+                            <h4>Before</h4>
+                            <div class="image-placeholder">
+                                <p>Outdated Relay Control Panel</p>
+                            </div>
+                            <p style="margin-top: 0.5rem;">Old relay logic system with frequent failures and difficult-to-source replacement parts.</p>
+                        </div>
+                        <div class="comparison-item after">
+                            <h4>After</h4>
+                            <div class="image-placeholder">
+                                <p>Modern Microprocessor Control</p>
+                            </div>
+                            <p style="margin-top: 0.5rem;">New microprocessor-based control system with diagnostic capabilities and improved energy efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="before-after">
+                    <h3 style="text-align: center; padding: 1rem;">Cab Interior Renovation</h3>
+                    <div class="comparison">
+                        <div class="comparison-item before">
+                            <h4>Before</h4>
+                            <div class="image-placeholder">
+                                <p>Worn Cab Interior</p>
+                            </div>
+                            <p style="margin-top: 0.5rem;">Damaged wall panels, outdated lighting, and worn flooring creating a poor impression.</p>
+                        </div>
+                        <div class="comparison-item after">
+                            <h4>After</h4>
+                            <div class="image-placeholder">
+                                <p>Renovated Cab Interior</p>
+                            </div>
+                            <p style="margin-top: 0.5rem;">Modern design with LED lighting, stainless steel fixtures, and durable flooring materials.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="before-after">
+                    <h3 style="text-align: center; padding: 1rem;">Door System Replacement</h3>
+                    <div class="comparison">
+                        <div class="comparison-item before">
+                            <h4>Before</h4>
+                            <div class="image-placeholder">
+                                <p>Malfunctioning Door System</p>
+                            </div>
+                            <p style="margin-top: 0.5rem;">Frequent door issues causing reliability problems and safety concerns.</p>
+                        </div>
+                        <div class="comparison-item after">
+                            <h4>After</h4>
+                            <div class="image-placeholder">
+                                <p>New Door Operator System</p>
+                            </div>
+                            <p style="margin-top: 0.5rem;">Modern door operator with advanced safety features and smooth, quiet operation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Contact Information Section -->
+        <section class="section" id="emergency">
+            <h2>Emergency Contact Information</h2>
+            <p>In case of elevator emergencies, please use the following contact information:</p>
+            
+            <div class="emergency-contact">
+                <h3>For Elevator Entrapment or Critical Safety Issues:</h3>
+                <p><strong>Call our 24/7 Emergency Hotline: (800) 555-LIFT</strong></p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <div>
+                        <strong>Service Department</strong>
+                        <p>(555) 123-4567</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <div>
+                        <strong>Email Support</strong>
+                        <p>service@elevatorcompany.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    <div>
+                        <strong>Customer Portal</strong>
+                        <p>www.elevatorcompany.com/support</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <div>
+                        <strong>Main Office</strong>
+                        <p>123 Elevator Way, Suite 500<br>Metropolis, NY 10001</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="cta">
+            <h2>Need Expert Elevator Repair Services?</h2>
+            <p>Contact our team today for a free consultation and service quote.</p>
+            <a href="#" class="btn">Request Service</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Professional Elevator Repair Services. All Rights Reserved.</p>
+            <p>Properly licensed and insured. Available 24/7/365 for all your elevator needs.</p>
+        </div>
+    </footer>
+</body>
+</html>
