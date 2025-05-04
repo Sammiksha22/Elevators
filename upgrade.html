@@ -12,7 +12,7 @@
 <body>
     <main>
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" id="upgrade-home">
             <div class="hero-content">
                 <h1>Elevate Your Building's Performance</h1>
                 <p>Discover how our cutting-edge elevator technology transforms your property's value and user
@@ -21,7 +21,7 @@
         </section>
 
         <!-- Features Section -->
-        <section class="features">
+        <section class="features" id="why-upgrade">
             <h2 class="section-title">Why Upgrade Your Elevator System?</h2>
 
             <div class="feature-container">
@@ -64,7 +64,7 @@
         </section>
 
         <!-- Technology Showcase -->
-        <section class="tech-showcase">
+        <section class="tech-showcase" id="upgrade-types">
             <div class="tech-content">
                 <h2>Next-Generation Elevator Technology</h2>
                 <div class="tech-grid">
@@ -94,125 +94,130 @@
         </section>
 
         <!-- 3D Animation -->
-        <div class="elevator-text-heading">
-            <h2 class="animated-heading">SMART. SECURE. SEAMLESS.</h2>
-            <p class="animated-subtext">Experience the next generation of elevator technology that ensures safety,
-                efficiency, and comfort at every level.</p>
-        </div>
+        <section class=smart-features id="smart-features">
+            <div class="elevator-text-heading">
+                <h2 class="animated-heading">SMART. SECURE. SEAMLESS.</h2>
+                <p class="animated-subtext">Experience the next generation of elevator technology that ensures safety,
+                    efficiency, and comfort at every level.</p>
+            </div>
 
-        <div class="elevator-scene">
-            <div class="building">
-                <div class="elevator-shaft">
-                    <div class="elevator-car">
-                        <div class="elevator-doors">
-                            <div class="door left"></div>
-                            <div class="door right"></div>
-                        </div>
-                        <div class="elevator-interior">
-                            <div class="led-screen">
-                                <div class="led-text">WELCOME TO SUPER ELEVATOR - THE FUTURE OF VERTICAL TRANSPORTATION
-                                    - SMART, SECURE, SEAMLESS</div>
+            <div class="elevator-scene">
+                <div class="building">
+                    <div class="elevator-shaft">
+                        <div class="elevator-car">
+                            <div class="elevator-doors">
+                                <div class="door left"></div>
+                                <div class="door right"></div>
                             </div>
-                            <div class="control-panel">
-                                <!-- Control buttons will be added by JS -->
+                            <div class="elevator-interior">
+                                <div class="led-screen">
+                                    <div class="led-text">WELCOME TO SUPER ELEVATOR - THE FUTURE OF VERTICAL
+                                        TRANSPORTATION
+                                        - SMART, SECURE, SEAMLESS</div>
+                                </div>
+                                <div class="control-panel">
+                                    <!-- Control buttons will be added by JS -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="particles"></div>
+                <div class="notification">Floor Selected: 5</div>
             </div>
-            <div class="particles"></div>
-            <div class="notification">Floor Selected: 5</div>
-        </div>
 
-        <div class="elevator-text-heading">
-            <h2 class="animated-heading">Mobile-Controlled Smart Elevator.</h2>
-            <p class="animated-subtext">Experience the next generation of elevator technology that ensures safety,
-                efficiency, and comfort at every level.</p>
-        </div>
-
-        <div class="mobile-control">
-            <div class="mobile-screen">
-                <div class="status-bar">
-                    <span>9:41 AM</span>
-                    <span>Bluetooth Connected</span>
-                </div>
-                <div class="app-header">
-                    <div class="app-logo">SE</div>
-                    <div class="app-name">SUPER ELEVATOR</div>
-                </div>
-                <div class="elevator-status">
-                    <div class="status-item">
-                        <span class="status-label">Status:</span>
-                        <span class="status-value">Ready</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">Current Floor:</span>
-                        <span class="status-value" id="current-floor">1</span>
-                    </div>
-                    <div class="status-item">
-                        <span class="status-label">Destination:</span>
-                        <span class="status-value" id="destination-floor">-</span>
-                    </div>
-                </div>
-                <div class="floor-selector">
-                    <!-- Floor buttons will be added by JS -->
-                </div>
-                <div class="action-buttons">
-                    <button class="action-btn door-btn">
-                        Open/Close Doors
-                    </button>
-                    <button class="action-btn call">
-                        Call Elevator
-                    </button>
-                </div>
+            <div class="elevator-text-heading">
+                <h2 class="animated-heading">Mobile-Controlled Smart Elevator.</h2>
+                <p class="animated-subtext">Experience the next generation of elevator technology that ensures safety,
+                    efficiency, and comfort at every level.</p>
             </div>
-        </div>
 
-        <div class="features">
-            <h2>Smart Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3 class="feature-title">Mobile Control</h3>
-                    <p class="feature-desc">Control the elevator from your smartphone with our dedicated app, allowing
-                        for touchless operation and personalized settings.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔐</div>
-                    <h3 class="feature-title">Biometric Security</h3>
-                    <p class="feature-desc">Advanced biometric authentication ensures only authorized personnel can
-                        access restricted floors.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Energy Efficiency</h3>
-                    <p class="feature-desc">AI-powered algorithms optimize elevator movement to reduce energy
-                        consumption during peak and off-peak hours.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">Predictive Maintenance</h3>
-                    <p class="feature-desc">IoT sensors continuously monitor elevator health, predicting maintenance
-                        needs before issues occur.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3 class="feature-title">Traffic Management</h3>
-                    <p class="feature-desc">Smart routing algorithms optimize elevator dispatch patterns based on
-                        building occupancy and usage patterns.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📡</div>
-                    <h3 class="feature-title">Remote Monitoring</h3>
-                    <p class="feature-desc">Building managers can monitor all elevator operations in real-time through a
-                        comprehensive dashboard.</p>
+            <div class="mobile-control">
+                <div class="mobile-screen">
+                    <div class="status-bar">
+                        <span>9:41 AM</span>
+                        <span>Bluetooth Connected</span>
+                    </div>
+                    <div class="app-header">
+                        <div class="app-logo">SE</div>
+                        <div class="app-name">SUPER ELEVATOR</div>
+                    </div>
+                    <div class="elevator-status">
+                        <div class="status-item">
+                            <span class="status-label">Status:</span>
+                            <span class="status-value">Ready</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Current Floor:</span>
+                            <span class="status-value" id="current-floor">1</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Destination:</span>
+                            <span class="status-value" id="destination-floor">-</span>
+                        </div>
+                    </div>
+                    <div class="floor-selector">
+                        <!-- Floor buttons will be added by JS -->
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn door-btn">
+                            Open/Close Doors
+                        </button>
+                        <button class="action-btn call">
+                            Call Elevator
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        </div>
+
+            <div class="features">
+                <h2>Smart Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title">Mobile Control</h3>
+                        <p class="feature-desc">Control the elevator from your smartphone with our dedicated app,
+                            allowing
+                            for touchless operation and personalized settings.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3 class="feature-title">Biometric Security</h3>
+                        <p class="feature-desc">Advanced biometric authentication ensures only authorized personnel can
+                            access restricted floors.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">Energy Efficiency</h3>
+                        <p class="feature-desc">AI-powered algorithms optimize elevator movement to reduce energy
+                            consumption during peak and off-peak hours.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 class="feature-title">Predictive Maintenance</h3>
+                        <p class="feature-desc">IoT sensors continuously monitor elevator health, predicting maintenance
+                            needs before issues occur.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3 class="feature-title">Traffic Management</h3>
+                        <p class="feature-desc">Smart routing algorithms optimize elevator dispatch patterns based on
+                            building occupancy and usage patterns.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📡</div>
+                        <h3 class="feature-title">Remote Monitoring</h3>
+                        <p class="feature-desc">Building managers can monitor all elevator operations in real-time
+                            through a
+                            comprehensive dashboard.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
 
         <!-- Upgrade Process -->
-        <section class="upgrade-process">
+        <section class="upgrade-process" id="upgrade-process">
             <h2 class="section-title">Our Streamlined Upgrade Process</h2>
             <div class="process-timeline">
                 <div class="process-step">
@@ -246,25 +251,8 @@
             </div>
         </section>
 
-        <!-- Call to Action -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>Ready to Modernize Your Elevator System?</h2>
-                <p>Schedule a free consultation with our elevator modernization experts today.</p>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="cta-btn primary">Get a Quote</a>
-                    <a href="tel:+123456789" class="cta-btn secondary">Call Us</a>
-                </div>
-            </div>
-            <div class="cta-image">
-                <div class="image-card">
-                    <img src="assests/upgrade.jpg" alt="Modern Elevator Technology">
-                </div>
-            </div>
-        </section>
-
         <!-- === Testimonail === -->
-        <div class="testimonial-section">
+        <div class="testimonial-section" id="testimonial">
             <div class="testimonial-container">
                 <div class="testimonial-slide active" id="slide-1">
                     <div class="quote-icon">❝</div>
@@ -285,12 +273,12 @@
                         <p class="client-position">Property Manager, Skyline Tower</p>
                     </div>
                 </div>
-    
+
                 <div class="testimonial-slide" id="slide-2">
                     <div class="quote-icon">❝</div>
                     <p class="testimonial-text">
-                        The energy efficiency improvements have reduced our operating costs by 35%. 
-                        The touch screen interfaces and mobile app integration have received excellent 
+                        The energy efficiency improvements have reduced our operating costs by 35%.
+                        The touch screen interfaces and mobile app integration have received excellent
                         feedback from our building occupants.
                     </p>
                     <div class="rating">
@@ -305,12 +293,12 @@
                         <p class="client-position">Facility Director, Central Plaza</p>
                     </div>
                 </div>
-    
+
                 <div class="testimonial-slide" id="slide-3">
                     <div class="quote-icon">❝</div>
                     <p class="testimonial-text">
-                        From the initial consultation to final implementation, the elevator modernization 
-                        team demonstrated exceptional professionalism. The smart destination dispatch 
+                        From the initial consultation to final implementation, the elevator modernization
+                        team demonstrated exceptional professionalism. The smart destination dispatch
                         system has significantly improved traffic flow during peak hours.
                     </p>
                     <div class="rating">
@@ -325,22 +313,22 @@
                         <p class="client-position">Operations Manager, Highland Offices</p>
                     </div>
                 </div>
-    
+
                 <div class="navigation-arrows">
                     <button class="arrow prev" id="prev-btn">❮</button>
                     <button class="arrow next" id="next-btn">❯</button>
                 </div>
             </div>
-    
+
             <div class="dots-container">
                 <button class="dot active" id="dot-1"></button>
                 <button class="dot" id="dot-2"></button>
                 <button class="dot" id="dot-3"></button>
             </div>
         </div>
-        
+
         <!-- FAQ Section -->
-        <section class="faq-section">
+        <section class="faq-section" id="FAQ">
             <h2 class="section-title">Frequently Asked Questions</h2>
             <div class="faq-container">
                 <div class="faq-item">
@@ -388,56 +376,72 @@
                 </div>
             </div>
         </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section" id="contact-upgrade">
+            <div class="cta-content">
+                <h2>Ready to Modernize Your Elevator System?</h2>
+                <p>Schedule a free consultation with our elevator modernization experts today.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-btn primary">Get a Quote</a>
+                    <a href="tel:+123456789" class="cta-btn secondary">Call Us</a>
+                </div>
+            </div>
+            <div class="cta-image">
+                <div class="image-card">
+                    <img src="assests/upgrade.jpg" alt="Modern Elevator Technology">
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- footer  -->
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="logo.png" alt="SE Logo">
-            </div>
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h3>Navigation</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="jobs.html">Jobs</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">Elevator Installation</a></li>
-                        <li><a href="#">System Modernization</a></li>
-                        <li><a href="#">Preventive Maintenance</a></li>
-                        <li><a href="#">24/7 Repair Service</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Elevator Street, City</li>
-                        <li><i class="fas fa-phone"></i> +1 (123) 456-7890</li>
-                        <li><i class="fas fa-envelope"></i> info@superelevators.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-social">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+          <div class="footer-logo">
+            <img src="assests/logo.png" alt="Super Elevators Logo" />
+            <h2>Super Elevators</h2>
+            <p>Elevate Yourself to new Heights.</p>
+          </div>
+      
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#upgrade-home">Home</a></li>
+              <li><a href="#why-upgrade">why-upgrade</a></li>
+              <li><a href="#upgrade-types">upgrade-types</a></li>
+              <li><a href="#smart-features">smart-features</a></li>
+              <li><a href="#upgrade-process">upgrade-process</a></li>
+              <li><a href="#testimonial">testimonial</a></li>
+              <li><a href="#FAQ">FAQ</a></li>
+              <li><a href="#contact-upgrade">contact-upgrade</a></li>
+
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h3>Contact Us</h3>
+            <ul class="contact-info">
+              <li><i class="fas fa-map-marker-alt"></i> Shop no.24 Unity Apartment, Damodar Park, L.B.S Marg, Ghatkopar(W), Mumbai-400086.</li>
+              <li><i class="fas fa-phone"></i> 8691891154 / 9324376634</li>
+              <li><i class="fas fa-envelope"></i> superelevators@gmail.com</li>
+            </ul>
+          </div>
         </div>
+      
         <div class="footer-bottom">
-            <p>&copy; 2025 Super Elevators. All Rights Reserved.</p>
+          <p>© 2025 Super Elevators. All rights reserved.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
-    </footer>
+      </footer>
+      
+    
+    
 
     <script src="script.js"></script>
 </body>
