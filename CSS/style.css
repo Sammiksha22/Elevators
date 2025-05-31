@@ -1,0 +1,822 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    color: #333;
+    background: #f5f8fd;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(90deg, #002244, #004080);
+    transition: all 0.4s ease;
+    padding: 0.5rem 1rem; /* Consistent padding */
+}
+
+.navbar.scrolled {
+    background: #001d3d;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+}
+
+/* Logo styling - fixed aspect ratio */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0; /* Remove default padding */
+}
+
+.navbar-brand img.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: contain; /* Changed from cover to contain */
+    background-color: #fff; /* Optional: adds a white background */
+    padding: 2px; /* Optional: gives a little padding inside the circle */
+}
+
+.nav-link {
+    color: #fff;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #f7c948;
+}
+
+/* For mobile screens - ensure logo stays properly sized */
+@media (max-width: 768px) {
+    .navbar-brand img.logo {
+        width: 40px; /* Slightly smaller on mobile */
+        height: 40px; /* Maintain 1:1 aspect ratio */
+    }
+    
+    .navbar {
+        padding: 0.3rem 0.8rem; /* Slightly less padding on mobile */
+    }
+}
+
+/* Center navigation items in mobile view */
+@media (max-width: 991px) {
+    /* Center the navbar items */
+    .navbar-collapse {
+        text-align: center;
+    }
+    
+    .navbar-nav {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .navbar-nav .nav-item {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+    
+    .navbar-nav .nav-link {
+        display: inline-block;
+        margin-left: 0; /* Remove left margin in mobile view */
+        padding: 0.5rem 0;
+        font-size: 1.1rem;
+    }
+    
+    /* Add a subtle divider between menu items */
+    .navbar-nav .nav-item:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 0.5rem;
+    }
+    
+    /* Active item styling */
+    .navbar-nav .nav-link.active {
+        font-weight: bold;
+    }
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #002244;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    display: none;
+    z-index: 9999;
+    font-size: 20px;
+    transition: background 0.3s;
+}
+.back-to-top.active {
+    display: block;
+}
+.back-to-top:hover {
+    background: #f7c948;
+    color: #002244;
+}
+/* Carousel Caption - Centered */
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 25px;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+    width: 80%;
+    display: block !important; /* Ensure visibility regardless of Bootstrap classes */
+}
+.carousel-caption h2 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #fff;
+}
+.carousel-caption p {
+    font-size: 1.2rem;
+    color: #eee;
+}
+.carousel-caption .btn {
+    margin-top: 15px;
+    background: #f7c948;
+    border: none;
+    color: #001d3d;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+.carousel-caption .btn:hover {
+    background: #fff;
+    color: #001d3d;
+}
+.carousel-item img {
+    width: 100%;
+    height: auto;
+}
+.carousel-inner {
+    max-width: 100%;
+    overflow: hidden;
+}
+  
+/* Mobile Fix */
+@media (max-width: 768px) {
+  .carousel-caption {
+    /* Fixed positioning to ensure visibility */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Better mobile styling */
+    width: 85%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8); /* Darker for better contrast */
+    z-index: 10; /* Ensure it's above other elements */
+  }
+  
+  /* Make text smaller on mobile */
+  .carousel-caption h2 {
+    font-size: 1.5rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .carousel-caption p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Make button more prominent */
+  .carousel-caption .btn {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  /* Fix carousel height issues */
+  .carousel-item {
+    height: 300px; /* Fixed height for mobile */
+    overflow: hidden;
+  }
+  
+  .carousel-item img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Make navigation arrows more visible */
+  .carousel-control-prev, .carousel-control-next {
+    width: 10%;
+    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Section Headers */
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #001d3d;
+}
+.line {
+    width: 80px;
+    height: 4px;
+    background: #f7c948;
+    margin: 15px auto;
+}
+
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* About Section Styling */
+.about-section {
+    padding: 50px 0;
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(67, 143, 255, 0.05);
+    top: -150px;
+    left: -150px;
+    z-index: 0;
+}
+
+.about-section::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(67, 143, 255, 0.05);
+    bottom: -100px;
+    right: -100px;
+    z-index: 0;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header Styles */
+.about-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.highlight {
+    color: #1e88e5;
+}
+
+/* Content Layout */
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Image Styles */
+.image-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.05);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: 30px;
+    right: -20px;
+    background: linear-gradient(135deg, #1e88e5, #64b5f6);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.2);
+    text-align: center;
+    transform: rotate(-5deg);
+}
+
+.years {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+}
+
+.text {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Text Content Styles */
+.tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* Feature Box */
+.feature-box {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border-left: 5px solid #1e88e5;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-box::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(30, 136, 229, 0.1);
+    top: -20px;
+    left: 10px;
+    line-height: 1;
+}
+
+.impact-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #333;
+    position: relative;
+    z-index: 1;
+}
+
+/* Stats Container */
+.stat-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    gap: 15px;
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+    color: #1e88e5;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.stat-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Values Section */
+.values-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.value-item {
+    flex: 1;
+    min-width: 150px;
+    padding: 25px 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateY(-10px);
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #1e88e5, #64b5f6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.2);
+}
+
+.value-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.value-item h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.value-item p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* CTA Section */
+.cta-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.cta-button {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #1e88e5, #64b5f6);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(30, 136, 229, 0.3);
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: #1e88e5;
+    border: 2px solid #1e88e5;
+    box-shadow: none;
+}
+
+.cta-button.secondary:hover {
+    background: rgba(30, 136, 229, 0.1);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 992px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.5rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-image, .about-text {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about-section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .tagline {
+        font-size: 1.3rem;
+    }
+    
+    .stat-container, .values-container {
+        gap: 15px;
+    }
+    
+    .value-item {
+        min-width: calc(50% - 15px);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .about-section {
+        padding: 30px 0;
+    }
+    
+    .about-header {
+        margin-bottom: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .stat-item {
+        min-width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .value-item {
+        min-width: 100%;
+    }
+    
+    .cta-container {
+        flex-direction: column;
+    }
+    
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Services Section */
+.service-card {
+    background: #fff;
+    border: none;
+    padding: 30px 25px;
+    text-align: center;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    background: linear-gradient(135deg, #004080, #002244);
+    color: #fff;
+}
+.service-card:hover .service-icon i,
+.service-card:hover h3,
+.service-card:hover p,
+.service-card:hover .service-link {
+    color: #f7c948;
+}
+.service-icon i {
+    font-size: 40px;
+    color: #004080;
+}
+.service-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #004080;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.service-link:hover {
+    text-decoration: underline;
+}
+
+/* FAQ Section */
+.accordion-button {
+    background: #f1f5f9;
+    font-weight: 600;
+    color: #001d3d;
+}
+.accordion-button:not(.collapsed) {
+    background: #004080;
+    color: #fff;
+}
+.accordion-body {
+    background: #f9f9f9;
+}
+
+/* Careers Section */
+.job-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+}
+.job-card:hover {
+    transform: translateY(-10px);
+    background: linear-gradient(135deg, #004080, #002244);
+    color: #fff;
+}
+.job-card h3 {
+    font-weight: bold;
+}
+.job-details p {
+    margin: 5px 0;
+}
+.job-description ul {
+    padding-left: 20px;
+}
+
+/* Contact Section */
+.contact-info {
+    margin-bottom: 20px;
+}
+.contact-item i {
+    font-size: 30px;
+    color: #004080;
+    margin-right: 15px;
+}
+.contact-form .form-control,
+.contact-form .form-select,
+.contact-form textarea {
+    border-radius: 12px;
+}
+.contact-form button {
+    background: #004080;
+    border: none;
+    border-radius: 12px;
+    transition: background 0.3s;
+}
+.contact-form button:hover {
+    background: #002244;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(90deg, #001d3d, #002244);
+    color: #fff;
+    padding-top: 50px;
+}
+.footer-about img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;    
+}
+.footer-links h4,
+.footer-contact h4 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.footer-links ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.footer-links ul li a:hover {
+    color: #f7c948;
+}
+.footer-contact p {
+    margin: 8px 0;
+}
+.social-links a {
+    font-size: 18px;
+    color: white;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+.social-links a:hover {
+    color: #f7c948;
+}
+
+/* Copyright */
+.copyright {
+    margin-top: 30px;
+    padding: 20px 0;
+    background: #000814;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Map Section */
+.map-container {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-brand img {
+        width: 100px;
+    }
+    .carousel-caption {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    h2.section-header {
+        font-size: 2rem;
+    }
+    .service-card,
+    .job-card {
+        padding: 20px;
+    }
+}
