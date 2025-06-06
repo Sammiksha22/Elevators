@@ -245,75 +245,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Testimonial Slider
-let currentTestimonial = 0;
-const totalTestimonials = testimonials.length;
-
-// Initialize testimonial slider
-function initTestimonialSlider() {
-    testimonials[currentTestimonial].classList.add('active');
-    dots[currentTestimonial].classList.add('active');
-}
-
-// Show specific testimonial
-function showTestimonial(index) {
-    testimonials.forEach(testimonial => {
-        testimonial.classList.remove('active');
-    });
-
-    dots.forEach(dot => {
-        dot.classList.remove('active');
-    });
-
-    testimonials[index].classList.add('active');
-    dots[index].classList.add('active');
-    currentTestimonial = index;
-}
-
-// Next testimonial
-function nextTestimonial() {
-    currentTestimonial++;
-    if (currentTestimonial >= totalTestimonials) {
-        currentTestimonial = 0;
-    }
-    showTestimonial(currentTestimonial);
-}
-
-// Previous testimonial
-function prevTestimonial() {
-    currentTestimonial--;
-    if (currentTestimonial < 0) {
-        currentTestimonial = totalTestimonials - 1;
-    }
-    showTestimonial(currentTestimonial);
-}
-
-// Event listeners for testimonial controls
-nextBtn.addEventListener('click', nextTestimonial);
-prevBtn.addEventListener('click', prevTestimonial);
-
-// Dot navigation
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        showTestimonial(index);
-    });
-});
-
-// Auto-rotate testimonials
-let testimonialInterval = setInterval(nextTestimonial, 5000);
-
-// Stop auto-rotation when interacting with controls
-function resetInterval() {
-    clearInterval(testimonialInterval);
-    testimonialInterval = setInterval(nextTestimonial, 5000);
-}
-
-nextBtn.addEventListener('click', resetInterval);
-prevBtn.addEventListener('click', resetInterval);
-dots.forEach(dot => {
-    dot.addEventListener('click', resetInterval);
-});
-
 // Reveal animations for sections
 const revealElements = document.querySelectorAll('.benefit-card, .feature, .project-card, .timeline-item');
 
@@ -342,16 +273,6 @@ window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', () => {
     revealOnScroll();
     initTestimonialSlider();
-});
-
-// Pause testimonial rotation when hovering over slider
-const testimonialSlider = document.querySelector('.testimonials-slider');
-testimonialSlider.addEventListener('mouseenter', () => {
-    clearInterval(testimonialInterval);
-});
-
-testimonialSlider.addEventListener('mouseleave', () => {
-    testimonialInterval = setInterval(nextTestimonial, 5000);
 });
 
 // Form validation for contact form (if added later)
@@ -396,7 +317,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function () {
-    // Mobile Navigation Toggle
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
@@ -580,59 +500,6 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(randomMove, 15000);
     };
 
-    // === Testimonial ===// 
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.dot');
-    const prevButton = document.getElementById('prev-btn');
-    const nextButton = document.getElementById('next-btn');
-    
-    let currentSlide = 0;
-    
-    // Function to show a specific slide
-    function showSlide(index) {
-        // Hide all slides
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].classList.remove('active');
-            dots[i].classList.remove('active');
-        }
-        
-        // Show the selected slide and activate the corresponding dot
-        slides[index].classList.add('active');
-        dots[index].classList.add('active');
-        
-        // Update current slide index
-        currentSlide = index;
-    }
-    
-    // Previous button click
-    prevButton.onclick = function() {
-        let newIndex = currentSlide - 1;
-        if (newIndex < 0) {
-            newIndex = slides.length - 1;
-        }
-        showSlide(newIndex);
-    };
-    
-    // Next button click
-    nextButton.onclick = function() {
-        let newIndex = currentSlide + 1;
-        if (newIndex >= slides.length) {
-            newIndex = 0;
-        }
-        showSlide(newIndex);
-    };
-    
-    // Dot clicks
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].onclick = function() {
-            showSlide(i);
-        };
-    }
-    
-    // Initialize with first slide active
-    showSlide(0);
-});
-
     // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
 
@@ -718,5 +585,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    preloadImages();
+    preloadImages()
 
